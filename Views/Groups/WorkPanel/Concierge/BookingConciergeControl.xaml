@@ -1,0 +1,168 @@
+﻿<UserControl x:Class="HotelApp.Views.Groups.WorkPanel.Concierge.BookingConciergeControl"
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        Width="500" Height="400">
+    <Border Background="#FF1E1E1E">
+        <Border.Effect>
+            <DropShadowEffect Color="#FF222222" Opacity="0.5" BlurRadius="10" ShadowDepth="5" />
+        </Border.Effect>
+
+        <Grid>
+            <!-- Верхняя панель заголовка -->
+            <Grid Grid.Row="0" Background="Black" Height="30" VerticalAlignment="Top" MouseDown="DragWindow_MouseDown">
+                <TextBlock Text="Бронирование номеров" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="15,0" Foreground="White" FontSize="16"/>
+                <Button Content="X" Width="30" Height="30" 
+                    HorizontalAlignment="Right" 
+                    VerticalAlignment="Bottom"
+                    Background="Transparent"
+                    BorderBrush="Transparent"
+                    Foreground="White"
+                    FontSize="14"
+                    Click="CloseButton_Click"/>
+            </Grid>
+
+            <!-- Основной контент -->
+            <Grid Grid.Row="1" Margin="20" VerticalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" MinWidth="100"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <!-- Имя -->
+                <Label Grid.Row="0" Grid.Column="0" Content="Имя:" Foreground="White" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                <TextBox x:Name="FirstNameTextBox" Grid.Row="0" Grid.Column="1" Width="200" Text="{Binding FirstName}" />
+
+                <!-- Фамилия -->
+                <Label Grid.Row="1" Grid.Column="0" Content="Фамилия:" Foreground="White" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                <TextBox x:Name="LastNameTextBox" Grid.Row="1" Grid.Column="1" Width="200" Text="{Binding LastName}" />
+
+                <!-- Почта -->
+                <Label Grid.Row="2" Grid.Column="0" Content="Почта:" Foreground="White" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                <TextBox x:Name="EmailTextBox" Grid.Row="2" Grid.Column="1" Width="200" Text="{Binding Email}" />
+
+                <!-- Телефон -->
+                <Label Grid.Row="3" Grid.Column="0" Content="Телефон:" Foreground="White" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                <TextBox x:Name="PhoneTextBox" Grid.Row="3" Grid.Column="1" Width="200" Text="{Binding Phone}" />
+
+                <!-- Количество людей -->
+                <Label Grid.Row="4" Grid.Column="0" Content="Кол-во людей:" Foreground="White" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                <ComboBox Name="GuestCountComboBox" Grid.Row="4" Grid.Column="1" Width="200" SelectedIndex="0">
+                    <ComboBoxItem Content="1" Tag="1"/>
+                    <ComboBoxItem Content="2" Tag="2"/>
+                    <ComboBoxItem Content="3" Tag="3"/>
+                    <ComboBoxItem Content="4" Tag="4"/>
+                    <ComboBoxItem Content="5" Tag="5"/>
+                </ComboBox>
+
+                <!-- Способ оплаты -->
+                <Label Grid.Row="6" Grid.Column="0" Content="Способ оплаты:" Foreground="White" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                <ComboBox Name="StatusBookingComboBox" Grid.Row="6" Grid.Column="1" Width="200" SelectedIndex="0">
+                    <ComboBoxItem Content="Кредитная карта" Tag="1"/>
+                    <ComboBoxItem Content="Онлайн банк" Tag="2"/>
+                    <ComboBoxItem Content="Наличные" Tag="3"/>
+                </ComboBox>
+
+                <!-- Статус бронирования -->
+                <Label Grid.Row="7" Grid.Column="0" Content="Статус бронирования:" Foreground="White" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                <ComboBox Name="PaymentMethodComboBox" Grid.Row="7" Grid.Column="1" Width="200" SelectedIndex="0">
+                    <ComboBoxItem Content="Подтверждённый" Tag="1"/>
+                    <ComboBoxItem Content="Ожидаемый" Tag="2"/>
+                    <ComboBoxItem Content="Отменённый" Tag="3"/>
+                    <ComboBoxItem Content="Завершённый" Tag="4"/>
+                    <ComboBoxItem Content="Назначен к уборке" Tag="5"/>
+                    <ComboBoxItem Content="Занятый" Tag="6"/>
+                    <ComboBoxItem Content="Грязный" Tag="7"/>
+                </ComboBox>
+
+                <!-- Дата заезда -->
+                <Label Grid.Row="8" Grid.Column="0" Content="Дата заезда:" Foreground="White" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                <DatePicker Name="StartDatePicker" Grid.Row="8" Grid.Column="1" Width="200" SelectedDate="{x:Static sys:DateTime.Now}" Background="White" Foreground="Black" />
+
+                <!-- Дата выезда -->
+                <Label Grid.Row="9" Grid.Column="0" Content="Дата выезда:" Foreground="White" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                <DatePicker Name="EndDatePicker" Grid.Row="9" Grid.Column="1" Width="200" SelectedDate="{x:Static sys:DateTime.Now}" Background="White" Foreground="Black" />
+
+                <!-- Иноговая сумма -->
+                <Label Grid.Row="10" Grid.Column="0" Content="Иноговая сумма:" Foreground="White" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                <TextBlock x:Name="totalCash" Grid.Row="10" Grid.Column="1" Text="*** руб" Foreground="Red" FontWeight="Bold" VerticalAlignment="Center"/>
+
+            </Grid>
+
+            <!-- Панель с кнопками -->
+            <StackPanel Grid.Row="11"
+            Orientation="Horizontal"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Bottom"
+            Margin="0,0,0,10">
+
+                <!-- Кнопка брони -->
+                <Button Content="Забронировать" 
+                    Click="Book_Click" 
+                    Width="150" 
+                    Height="35"
+                    Background="#FFF44503" 
+                    Foreground="White" 
+                    FontSize="14" 
+                    FontWeight="Bold"
+                    Margin="0,0,10,0"/>
+
+                <!-- Кнопка получить итоговую сумму -->
+                <Button Content="Получить итоговую сумму" 
+                    Click="CalculateTotalPrice_Click" 
+                    Height="35"
+                    Background="Red" 
+                    Foreground="White" 
+                    FontSize="14" 
+                    FontWeight="Bold"/>
+            </StackPanel>
+            <!-- Индикатор загрузки -->
+            <Grid x:Name="LoadingIndicator" Visibility="Hidden" Opacity="0" Grid.Row="4" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <Canvas Width="200" Height="40">
+                    <ProgressBar x:Name="ProgressLoader" Width="200" Height="20" Minimum="0" Maximum="100" Value="0">
+                        <ProgressBar.Triggers>
+                            <EventTrigger RoutedEvent="Loaded">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetProperty="Value" From="0" To="100" Duration="0:0:3" RepeatBehavior="Forever" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                        </ProgressBar.Triggers>
+                    </ProgressBar>
+                </Canvas>
+                <TextBlock Name="TextLoading" Text="Loading..." Foreground="White" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Bottom"
+                       Margin="5,15,5,5" FontWeight="Bold">
+                    <TextBlock.Style>
+                        <Style TargetType="TextBlock">
+                            <Style.Triggers>
+                                <Trigger Property="IsVisible" Value="True">
+                                    <Trigger.EnterActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetProperty="Opacity" From="1" To="0" Duration="0:0:0.5" AutoReverse="True" RepeatBehavior="Forever" />
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </Trigger.EnterActions>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+            </Grid>
+        </Grid>
+    </Border>
+</UserControl>

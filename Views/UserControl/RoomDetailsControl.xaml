@@ -1,0 +1,68 @@
+﻿<UserControl x:Class="HotelApp.Views.UserControl.RoomDetailsControl"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- Тень вокруг окна -->
+    <UserControl.Effect>
+        <DropShadowEffect Color="Black" Opacity="0.3" BlurRadius="15" ShadowDepth="0"/>
+    </UserControl.Effect>
+
+    <Border CornerRadius="10">
+        <Grid>
+            <!-- Разделение на строки -->
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <!-- Заголовок -->
+                <RowDefinition Height="*"/>
+                <!-- Список комнат -->
+                <RowDefinition Height="Auto"/>
+                <!-- Canvas для модального окна -->
+            </Grid.RowDefinitions>
+
+            <Grid.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Color="#FF222222" Offset="0" />
+                    <GradientStop Color="#FF1E1E1E" Offset="0.5" />
+                    <GradientStop Color="#FF1A1A1A" Offset="1" />
+                </LinearGradientBrush>
+            </Grid.Background>
+
+            <!-- Заголовок и кнопка закрытия -->
+            <Grid Grid.Row="0" Background="Black" Height="30" VerticalAlignment="Top" MouseDown="DragWindow_MouseDown">
+                <TextBlock Text="{Binding Name}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="15,0" Foreground="White" FontSize="16"/>
+                <Button Content="X" Width="30" Height="30" 
+                    HorizontalAlignment="Right" 
+                    VerticalAlignment="Center"
+                    Background="Transparent"
+                    BorderBrush="Transparent"
+                    Foreground="White"
+                    FontSize="14"
+                    Click="CloseButton_Click"/>
+            </Grid>
+
+            <Border>
+                <StackPanel Margin="20">
+                    <TextBlock Text="{Binding NameRoom}" FontSize="20" Foreground="White" Margin="0,10" />
+                    <TextBlock Text="{Binding DescriptionRoom}" Foreground="#AAA" TextWrapping="Wrap" />
+                    <TextBlock Text="{Binding PriceRoom, StringFormat={}{0} ₽}" Foreground="#7FFF00" Margin="0,10" />
+                </StackPanel>
+            </Border>
+
+            <!-- Кнопка забронировать -->
+            <Button Grid.Row="2" 
+                Content="Забронировать" 
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Margin="20"
+                Padding="10,5"
+                Background="#4CAF50"
+                Foreground="White"
+                BorderBrush="#4CAF50"
+                FontWeight="Bold"
+                Click="BookButton_Click"/>
+
+            <Canvas x:Name="WindowContainer" Grid.RowSpan="4" />
+        </Grid>
+
+    </Border>
+</UserControl>
