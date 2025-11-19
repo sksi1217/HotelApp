@@ -1,0 +1,60 @@
+﻿<UserControl x:Class="HotelApp.Views.UserControl.LoginControl"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Width="400" Height="400">
+
+    <!-- Тень вокруг окна -->
+    <UserControl.Effect>
+        <DropShadowEffect Color="Black" Opacity="0.3" BlurRadius="15" ShadowDepth="0"/>
+    </UserControl.Effect>
+
+    <Border CornerRadius="10">
+        <Grid>
+            <Grid.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Color="#FF222222" Offset="0" />
+                    <GradientStop Color="#FF1E1E1E" Offset="0.5" />
+                    <GradientStop Color="#FF1A1A1A" Offset="1" />
+                </LinearGradientBrush>
+            </Grid.Background>
+
+            <!-- Заголовок и кнопка закрытия -->
+            <Grid Grid.Row="0" Background="Black" Height="30" VerticalAlignment="Top" MouseDown="DragWindow_MouseDown">
+                <TextBlock Text="Вход в систему" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="15,0" Foreground="White" FontSize="16"/>
+                <Button Content="X" Width="30" Height="30" 
+                        HorizontalAlignment="Right" 
+                        VerticalAlignment="Center"
+                        Background="Transparent"
+                        BorderBrush="Transparent"
+                        Foreground="White"
+                        FontSize="14"
+                        Click="CloseButton_Click"/>
+            </Grid>
+
+            <!-- Основной контент формы -->
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Margin="20" Grid.Row="1">
+
+                <!-- Поле логина -->
+                <Label Content="Логин" HorizontalAlignment="Left" Foreground="White" FontSize="14"/>
+                <TextBox x:Name="LoginTextBox" Width="280" Height="30" FontSize="14" Padding="5" Margin="0,0,0,10"/>
+
+                <!-- Поле пароля -->
+                <Label Content="Пароль" HorizontalAlignment="Left" Foreground="White" FontSize="14"/>
+                <PasswordBox x:Name="PasswordTextBox" Width="280" Height="30" FontSize="14" Padding="5" Margin="0,0,0,10"/>
+
+                <!-- Чекбокс "Запомнить меня" -->
+                <CheckBox x:Name="RememberMeCheckBox" Content="Запомнить меня" Foreground="White" Margin="0,0,0,20"/>
+
+                <!-- Кнопка входа -->
+                <Button Content="Войти" Width="280" Height="35" Background="#0078D7" Foreground="White" 
+                        FontSize="14" FontWeight="Bold" Click="Login_Click" Cursor="Hand" Margin="5"/>
+
+                <Button Content="Зарегистрироваться" Width="280" Height="35" Background="#FF4081" Foreground="White" 
+        FontSize="14" FontWeight="Bold" Click="Register_Click" Cursor="Hand" Margin="5"/>
+
+            </StackPanel>
+
+            <Canvas x:Name="WindowContainer" Grid.RowSpan="4" />
+        </Grid>
+    </Border>
+</UserControl>

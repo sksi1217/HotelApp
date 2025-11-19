@@ -1,0 +1,110 @@
+﻿<UserControl x:Class="HotelApp.Views.UserControl.AddRoomControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             Width="500" Height="600">
+
+    <UserControl.Effect>
+        <DropShadowEffect Color="Black" Opacity="0.3" BlurRadius="15" ShadowDepth="0"/>
+    </UserControl.Effect>
+
+    <Border CornerRadius="10">
+        <Grid>
+            <Grid.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Color="#FF222222" Offset="0" />
+                    <GradientStop Color="#FF1E1E1E" Offset="0.5" />
+                    <GradientStop Color="#FF1A1A1A" Offset="1" />
+                </LinearGradientBrush>
+            </Grid.Background>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+
+            <!-- Верхняя панель -->
+            <Grid Grid.Row="0" Background="Black" VerticalAlignment="Top" MouseDown="DragWindow_MouseDown" Height="30">
+                <TextBlock Text="Добавить номер" Foreground="White" FontSize="14" FontWeight="Bold" 
+           HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5,0,0,0" />
+                <Button Content="X"
+                        Width="30" Height="30"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Top"
+                        Background="Transparent"
+                        Foreground="White"
+                        FontSize="14"
+                        Click="CloseButton_Click"
+                        Cursor="Hand"
+                        Margin="0,0,10,0">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border Background="{TemplateBinding Background}" 
+                                BorderBrush="Transparent" BorderThickness="0" 
+                                CornerRadius="5">
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#FFDDDDDD" />
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+            </Grid>
+
+            <!-- Форма -->
+            <ScrollViewer Grid.Row="1" Margin="20">
+                <StackPanel>
+                    <Label Content="Название" Foreground="White"/>
+                    <TextBox x:Name="NameRoomBox" Height="30" Margin="0,0,0,10"/>
+
+                    <Label Content="Описание" Foreground="White"/>
+                    <TextBox x:Name="DescriptionBox" Height="60" TextWrapping="Wrap" AcceptsReturn="True" Margin="0,0,0,10"/>
+
+                    <Label Content="Цена (₽)" Foreground="White"/>
+                    <TextBox x:Name="PriceBox" Height="30" Margin="0,0,0,10"/>
+
+                    <Label Content="Номер комнаты" Foreground="White"/>
+                    <TextBox x:Name="NumberBox" Height="30" Margin="0,0,0,10"/>
+
+                    <Label Content="Этаж" Foreground="White"/>
+                    <TextBox x:Name="FloorBox" Height="30" Margin="0,0,0,10"/>
+
+                    <Label Content="Тип номера" Foreground="White"/>
+                    <ComboBox x:Name="TypeRoomCombo" Height="30" Margin="0,0,0,10">
+                        <ComboBoxItem Content="Стандарт"/>
+                        <ComboBoxItem Content="Люкс"/>
+                        <ComboBoxItem Content="Семейный"/>
+                        <!-- Добавьте нужные типы -->
+                    </ComboBox>
+
+                    <Label Content="Статус" Foreground="White"/>
+                    <ComboBox x:Name="StatusRoomCombo" Height="30" Margin="0,0,0,10">
+                        <ComboBoxItem Content="Свободен"/>
+                        <ComboBoxItem Content="Занят"/>
+                        <ComboBoxItem Content="На уборке"/>
+                    </ComboBox>
+                </StackPanel>
+            </ScrollViewer>
+
+            <!-- Кнопка сохранения -->
+            <Button Content="Добавить номер" 
+                    Grid.Row="2" 
+                    Width="200" Height="35" 
+                    HorizontalAlignment="Center" 
+                    Background="#0078D7" Foreground="White" 
+                    FontSize="14" FontWeight="Bold" 
+                    Click="SaveButton_Click" 
+                    Margin="0,10"/>
+        </Grid>
+    </Border>
+</UserControl>
